@@ -10,12 +10,28 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.util.concurrent.TimeUnit;
 
 public class Menu {
-
+	
 	public static JFrame frame;
+	public static int m;
+	public static ImageIcon[] teams = {new ImageIcon("ajax.png"), new ImageIcon("arsenal.png"), new ImageIcon("atalanta.png"),
+	new ImageIcon("atletico madrid.png"), new ImageIcon("barcelona.png"), new ImageIcon("bayern.png"), new ImageIcon("benfica.png"),
+	new ImageIcon("chelsea.png"), new ImageIcon("dortmund.png"), new ImageIcon("frankfurt.png"), new ImageIcon("gladbach.png"),
+	new ImageIcon("inter.png"), new ImageIcon("juventus.png"), new ImageIcon("lazio.png"), new ImageIcon("leicester.png"),
+	new ImageIcon("leipzig.png"), new ImageIcon("leverkusen.png"), new ImageIcon("lille.png"), new ImageIcon("liverpool.png"),
+	new ImageIcon("lyon.png"), new ImageIcon("manchester city.png"), new ImageIcon("manchester united.png"), new ImageIcon("marseille.png"),
+	new ImageIcon("milan.png"), new ImageIcon("monaco.png"), new ImageIcon("napoli.png"), new ImageIcon("newcastle.png"),
+	new ImageIcon("nice.png"), new ImageIcon("porto.png"), new ImageIcon("psg.png"), new ImageIcon("real betis.png"),
+	new ImageIcon("real madrid.png"), new ImageIcon("roma.png"), new ImageIcon("sevilla.png"), new ImageIcon("tottenham.png"),
+	new ImageIcon("valencia.png"), new ImageIcon("villarreal.png"), new ImageIcon("west ham.png"), new ImageIcon("wolfsburg.png"),
+	new ImageIcon("wolves.png")};
 
 	/**
 	 *  Launch the application.
@@ -65,10 +81,7 @@ public class Menu {
 	 */
 	public static void addComponent() {
 		
-		JLabel teamOne = new JLabel("");
-		JLabel teamTwo = new JLabel("");
-		JLabel teamThree = new JLabel("");
-		JLabel teamFour = new JLabel("");
+		JLabel[] teamLabel = {new JLabel(""), new JLabel(""), new JLabel(""), new JLabel("")};
 		
 		JLabel numberOne = new JLabel("1");
 		numberOne.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 50));
@@ -93,12 +106,27 @@ public class Menu {
 		JButton start = new JButton("Start!");
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().remove(teamOne);
-				frame.getContentPane().remove(teamTwo);
-				frame.getContentPane().remove(teamThree);
-				frame.getContentPane().remove(teamFour);
+				frame.getContentPane().repaint();
+				int genNum = (int) (Math.random()*(11)) + 5;
+				int width, height, x;
+				int y = 150;
+				int teamNum;
+				ImageIcon teamPic;
 				
-				int generationNumber = (int) (Math.random()*(11)) + 5;
+				//for (int i = 1; i <= genNum; i++) {
+					for (m = 0; m <= 3; m++) {
+						teamNum = (int) (Math.random()*(40));
+						teamPic = teams[teamNum];
+						width = getSize (teamPic.getIconWidth(), teamPic.getIconHeight(), 0);
+						height = getSize (teamPic.getIconWidth(), teamPic.getIconHeight(), 1);
+						x = (200 * m) + (200 - width)/2;
+						teamLabel[m].setBounds(x, y, width, height);
+						
+						ImageIcon scaledPic = new ImageIcon(teamPic.getImage().getScaledInstance(teamLabel[m].getWidth(), teamLabel[m].getHeight(), Image.SCALE_SMOOTH));
+						teamLabel[m].setIcon(scaledPic);
+						frame.getContentPane().add(teamLabel[m]);
+					}
+				//}
 			}
 		});
 		start.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 25));
@@ -115,5 +143,23 @@ public class Menu {
 		
 		//lblNewLabel.setIcon(scaledIcon);
 		//frame.getContentPane().add(lblNewLabel);
+	}
+	
+	public static int getSize (int width, int height, int wOrH) {
+		double w, h, prop;
+		if (width > height) {
+			w = 160.0;
+			prop = ((double) height / (double) width);
+			h = (double) 160.0 * prop;
+		}
+		else {
+			h = 160.0;
+			prop = ((double) width / (double) height);
+			w = (double) 160.0 * prop; 
+		}
+		if (wOrH == 0)
+			return (int) (Math.round(w));
+		else
+			return (int) (Math.round(h));
 	}
 }
