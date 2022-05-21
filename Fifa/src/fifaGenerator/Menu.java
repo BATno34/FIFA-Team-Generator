@@ -23,11 +23,11 @@ public class Menu {
 	public static int m;
 	public static ImageIcon[] teams = {new ImageIcon("ajax.png"), new ImageIcon("arsenal.png"), new ImageIcon("atalanta.png"),
 	new ImageIcon("atletico madrid.png"), new ImageIcon("barcelona.png"), new ImageIcon("bayern.png"), new ImageIcon("benfica.png"),
-	new ImageIcon("chelsea.png"), new ImageIcon("dortmund.png"), new ImageIcon("frankfurt.png"), new ImageIcon("gladbach.png"),
+	new ImageIcon("chelsea.png"), new ImageIcon("dortmund.png"), new ImageIcon("everton.png"), new ImageIcon("frankfurt.png"), new ImageIcon("gladbach.png"),
 	new ImageIcon("inter.png"), new ImageIcon("juventus.png"), new ImageIcon("lazio.png"), new ImageIcon("leicester.png"),
 	new ImageIcon("leipzig.png"), new ImageIcon("leverkusen.png"), new ImageIcon("lille.png"), new ImageIcon("liverpool.png"),
 	new ImageIcon("lyon.png"), new ImageIcon("manchester city.png"), new ImageIcon("manchester united.png"), new ImageIcon("marseille.png"),
-	new ImageIcon("milan.png"), new ImageIcon("monaco.png"), new ImageIcon("napoli.png"), new ImageIcon("newcastle.png"),
+	new ImageIcon("milan.png"), new ImageIcon("monaco.png"), new ImageIcon("napoli.png"),
 	new ImageIcon("nice.png"), new ImageIcon("porto.png"), new ImageIcon("psg.png"), new ImageIcon("real betis.png"),
 	new ImageIcon("real madrid.png"), new ImageIcon("roma.png"), new ImageIcon("sevilla.png"), new ImageIcon("tottenham.png"),
 	new ImageIcon("valencia.png"), new ImageIcon("villarreal.png"), new ImageIcon("west ham.png"), new ImageIcon("wolfsburg.png"),
