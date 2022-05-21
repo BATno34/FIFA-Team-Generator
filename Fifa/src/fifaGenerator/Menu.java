@@ -125,6 +125,14 @@ public class Menu {
 						ImageIcon scaledPic = new ImageIcon(teamPic.getImage().getScaledInstance(teamLabel[m].getWidth(), teamLabel[m].getHeight(), Image.SCALE_SMOOTH));
 						teamLabel[m].setIcon(scaledPic);
 						frame.getContentPane().add(teamLabel[m]);
+						Timer timer = new Timer(10000, new ActionListener() {
+							public void actionPerformed (ActionEvent evt) {
+								teamLabel[m].setVisible(false);
+							}
+						});
+						timer.setRepeats(false);
+						timer.start();
+						timer.stop();
 					}
 				//}
 			}
@@ -132,17 +140,6 @@ public class Menu {
 		start.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 25));
 		start.setBounds(325, 400, 150, 75);
 		frame.getContentPane().add(start);
-		//JLabel lblNewLabel = new JLabel("New label");
-		//lblNewLabel.setBounds(107, 89, 500, 200);
-		//lblNewLabel.setText("");
-		
-		//ImageIcon ajax = new ImageIcon("ajax.png");
-		//Image img = ajax.getImage();
-		//Image imgScale = img.getScaledInstance(lblNewLabel.getWidth(), lblNewLabel.getHeight(), Image.SCALE_SMOOTH);
-		//ImageIcon scaledIcon = new ImageIcon(imgScale);
-		
-		//lblNewLabel.setIcon(scaledIcon);
-		//frame.getContentPane().add(lblNewLabel);
 	}
 	
 	public static int getSize (int width, int height, int wOrH) {
