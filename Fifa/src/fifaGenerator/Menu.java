@@ -125,7 +125,6 @@ public class Menu {
 						ImageIcon scaledPic = new ImageIcon(teamPic.getImage().getScaledInstance(teamLabel[m].getWidth(), teamLabel[m].getHeight(), Image.SCALE_SMOOTH));
 						teamLabel[m].setIcon(scaledPic);
 						frame.getContentPane().add(teamLabel[m]);
-						
 					}
 				//}
 			}
