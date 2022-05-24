@@ -125,14 +125,7 @@ public class Menu {
 						ImageIcon scaledPic = new ImageIcon(teamPic.getImage().getScaledInstance(teamLabel[m].getWidth(), teamLabel[m].getHeight(), Image.SCALE_SMOOTH));
 						teamLabel[m].setIcon(scaledPic);
 						frame.getContentPane().add(teamLabel[m]);
-						Timer timer = new Timer(10000, new ActionListener() {
-							public void actionPerformed (ActionEvent evt) {
-								teamLabel[m].setVisible(false);
-							}
-						});
-						timer.setRepeats(false);
-						timer.start();
-						timer.stop();
+						
 					}
 				//}
 			}
