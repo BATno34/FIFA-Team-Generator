@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class Menu {
 	
 	public static JFrame frame;
-	public static int m;
+	public static int m = 0;
 	public static ImageIcon[] teams = {new ImageIcon("ajax.png"), new ImageIcon("arsenal.png"), new ImageIcon("atalanta.png"),
 	new ImageIcon("atletico madrid.png"), new ImageIcon("barcelona.png"), new ImageIcon("bayern.png"), new ImageIcon("benfica.png"),
 	new ImageIcon("chelsea.png"), new ImageIcon("dortmund.png"), new ImageIcon("everton.png"), new ImageIcon("frankfurt.png"), new ImageIcon("gladbach.png"),
@@ -73,7 +73,6 @@ public class Menu {
 		frame.setBounds(200, 50, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
 	}
 	
 	/**
@@ -82,6 +81,14 @@ public class Menu {
 	public static void addComponent() {
 		
 		JLabel[] teamLabel = {new JLabel(""), new JLabel(""), new JLabel(""), new JLabel("")};
+		frame.getContentPane().add(teamLabel[0]);
+		frame.getContentPane().add(teamLabel[1]);
+		frame.getContentPane().add(teamLabel[2]);
+		frame.getContentPane().add(teamLabel[3]);
+		teamLabel[0].setVisible(false);
+		teamLabel[1].setVisible(false);
+		teamLabel[2].setVisible(false);
+		teamLabel[3].setVisible(false);
 		
 		JLabel numberOne = new JLabel("1");
 		numberOne.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 50));
@@ -124,7 +131,14 @@ public class Menu {
 						
 						ImageIcon scaledPic = new ImageIcon(teamPic.getImage().getScaledInstance(teamLabel[m].getWidth(), teamLabel[m].getHeight(), Image.SCALE_SMOOTH));
 						teamLabel[m].setIcon(scaledPic);
-						frame.getContentPane().add(teamLabel[m]);
+						teamLabel[m].setVisible(true);
+						//try {
+							//Thread.sleep(1000);
+						//} catch (InterruptedException e1) {
+							// TODO Auto-generated catch block
+							//e1.printStackTrace();
+						//}
+						//teamLabel[m].setVisible(false);
 					}
 				//}
 			}
