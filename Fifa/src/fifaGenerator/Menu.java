@@ -10,6 +10,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -20,7 +21,14 @@ import java.util.concurrent.TimeUnit;
 public class Menu {
 	
 	public static JFrame frame;
-	public static int m = 0;
+	public static int m;
+	public static JLabel[] teamLabel = {new JLabel(""), new JLabel(""), new JLabel(""), new JLabel("")};
+	public static JButton start;
+	public static boolean toStart = true;
+	public static int genNum = (int) (Math.random()*(10)) + 1;
+	public static int count = 0;
+	public static int[] teamNum = new int[4];
+	public static Thread animationStart = new Thread(new Helper());
 	public static ImageIcon[] teams = {new ImageIcon("ajax.png"), new ImageIcon("arsenal.png"), new ImageIcon("atalanta.png"),
 	new ImageIcon("atletico madrid.png"), new ImageIcon("barcelona.png"), new ImageIcon("bayern.png"), new ImageIcon("benfica.png"),
 	new ImageIcon("chelsea.png"), new ImageIcon("dortmund.png"), new ImageIcon("everton.png"), new ImageIcon("frankfurt.png"), new ImageIcon("gladbach.png"),
@@ -80,7 +88,6 @@ public class Menu {
 	 */
 	public static void addComponent() {
 		
-		JLabel[] teamLabel = {new JLabel(""), new JLabel(""), new JLabel(""), new JLabel("")};
 		frame.getContentPane().add(teamLabel[0]);
 		frame.getContentPane().add(teamLabel[1]);
 		frame.getContentPane().add(teamLabel[2]);
@@ -110,37 +117,53 @@ public class Menu {
 		numberFour.setBounds(680, 50, 40, 100);
 		frame.getContentPane().add(numberFour);
 		
-		JButton start = new JButton("Start!");
+		animationStart = new Thread(new Helper());
+		start = new JButton("Start!");
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().repaint();
-				int genNum = (int) (Math.random()*(11)) + 5;
+				if (toStart == true) {
+					toStart = false;
+					animationStart = new Thread(new Helper());
+					animationStart.start();
+				}
+				else if (count == genNum) {
+					toStart = true;
+					genNum = (int) (Math.random()*(15)) + 1;
+					System.out.println(genNum);
+					count = 0;
+					JOptionPane.showMessageDialog(null, "Shuffling done. Enjoy your game!");
+				}
+				else
+				{
+				for (m = 0; m <= 3; m++)
+					teamLabel[m].setVisible(false);
 				int width, height, x;
 				int y = 150;
-				int teamNum;
 				ImageIcon teamPic;
 				
-				//for (int i = 1; i <= genNum; i++) {
-					for (m = 0; m <= 3; m++) {
-						teamNum = (int) (Math.random()*(40));
-						teamPic = teams[teamNum];
-						width = getSize (teamPic.getIconWidth(), teamPic.getIconHeight(), 0);
-						height = getSize (teamPic.getIconWidth(), teamPic.getIconHeight(), 1);
-						x = (200 * m) + (200 - width)/2;
-						teamLabel[m].setBounds(x, y, width, height);
-						
-						ImageIcon scaledPic = new ImageIcon(teamPic.getImage().getScaledInstance(teamLabel[m].getWidth(), teamLabel[m].getHeight(), Image.SCALE_SMOOTH));
-						teamLabel[m].setIcon(scaledPic);
-						teamLabel[m].setVisible(true);
-						//try {
-							//Thread.sleep(1000);
-						//} catch (InterruptedException e1) {
-							// TODO Auto-generated catch block
-							//e1.printStackTrace();
-						//}
-						//teamLabel[m].setVisible(false);
+				for (m = 0; m <= 3; m++) {
+					teamNum[m] = (int) (Math.random()*(40));
+					for (int h = 0; h < m; h++) {
+						if (teamNum[m] == teamNum[h]) {
+							teamNum[m] = (int) (Math.random()*(40));
+							h--;
+						}
 					}
-				//}
+					teamPic = teams[teamNum[m]];
+					width = getSize (teamPic.getIconWidth(), teamPic.getIconHeight(), 0);
+					height = getSize (teamPic.getIconWidth(), teamPic.getIconHeight(), 1);
+					x = (200 * m) + (200 - width)/2;
+					teamLabel[m].setBounds(x, y, width, height);
+						
+					ImageIcon scaledPic = new ImageIcon(teamPic.getImage().getScaledInstance(teamLabel[m].getWidth(), teamLabel[m].getHeight(), Image.SCALE_SMOOTH));
+					teamLabel[m].setIcon(scaledPic);
+				}
+				for (m = 0; m <= 3; m++)
+					teamLabel[m].setVisible(true);
+				count++;
+				animationStart.run();
+				}
 			}
 		});
 		start.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 25));
