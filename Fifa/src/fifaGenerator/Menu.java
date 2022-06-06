@@ -36,8 +36,8 @@ public class Menu {
 	new ImageIcon("leipzig.png"), new ImageIcon("leverkusen.png"), new ImageIcon("lille.png"), new ImageIcon("liverpool.png"),
 	new ImageIcon("lyon.png"), new ImageIcon("manchester city.png"), new ImageIcon("manchester united.png"), new ImageIcon("marseille.png"),
 	new ImageIcon("milan.png"), new ImageIcon("monaco.png"), new ImageIcon("napoli.png"),
-	new ImageIcon("nice.png"), new ImageIcon("porto.png"), new ImageIcon("psg.png"), new ImageIcon("real betis.png"),
-	new ImageIcon("real madrid.png"), new ImageIcon("real sociedad.png"), new ImageIcon("roma.png"), new ImageIcon("sevilla.png"), new ImageIcon("tottenham.png"),
+	new ImageIcon("nice.png"), new ImageIcon("porto.png"), new ImageIcon("psg.png"), new ImageIcon("psv.png"), new ImageIcon("real betis.png"),
+	new ImageIcon("real madrid.png"), new ImageIcon("real sociedad.png"), new ImageIcon("roma.png"), new ImageIcon("sevilla.png"), new ImageIcon("sporting.png"), new ImageIcon("tottenham.png"),
 	new ImageIcon("valencia.png"), new ImageIcon("villarreal.png"), new ImageIcon("west ham.png"), new ImageIcon("wolfsburg.png"),
 	new ImageIcon("wolves.png")};
 
@@ -142,10 +142,10 @@ public class Menu {
 				ImageIcon teamPic;
 				
 				for (m = 0; m <= 3; m++) {
-					teamNum[m] = (int) (Math.random()*(41));
+					teamNum[m] = (int) (Math.random()*(43));
 					for (int h = 0; h < m; h++) {
 						if (teamNum[m] == teamNum[h]) {
-							teamNum[m] = (int) (Math.random()*(41));
+							teamNum[m] = (int) (Math.random()*(43));
 							h--;
 						}
 					}
